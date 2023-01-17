@@ -3,12 +3,18 @@ import { Feather  } from "@expo/vector-icons";
 import styled, { css } from "styled-components/native";
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
+import Animated from "react-native-reanimated";
+import { Device } from "../../global/device";
+import { FlatList } from "react-native";
+
+const ITEM_SIZE = Device.width * 0.82;
+
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const Header = styled.View`
+export const Header = styled(Animated.View)`
   width: 100%;
   height: ${RFPercentage(42)}px;
 
@@ -61,5 +67,17 @@ export const UserName = styled.Text`
 
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.secundary};
-  font-size: ${RFValue(24)};
+  font-size: ${RFValue(24)}px;
+`;
+
+export const HighlightCards = (styled(Animated.FlatList)`
+  width: 100%;
+  position: relative;
+  top: ${RFValue(-50)}px;
+  z-index: 10;
+` as unknown) as typeof Animated.FlatList;
+
+
+export const Spacer = styled.View`
+  width: ${(Device.width - ITEM_SIZE) / 2}px;
 `;
