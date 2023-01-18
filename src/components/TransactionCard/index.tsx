@@ -1,18 +1,30 @@
 import React from 'react';
 import * as Styled from "./styles";
+interface Category {
+  name: string;
+  icon: string;
+}
+interface TransactionCardProps {
+  data: {
+    title: string;
+    amount: string;
+    category: Category;
+    date: string;
+  }
+}
 
-export default function TransactionCard() {
+export default function TransactionCard({ data }: TransactionCardProps) {
   return (
     <Styled.Container>
-      <Styled.Title>Desenvolvimento de site</Styled.Title>
-      <Styled.Amount>R$ 12.000,00</Styled.Amount>
+      <Styled.Title>{data.title}</Styled.Title>
+      <Styled.Amount>{data.amount}</Styled.Amount>
       <Styled.Footer>
         <Styled.Category>
           <Styled.Icon name="dollar-sign" />
-          <Styled.CategoryName>Vendas</Styled.CategoryName>
+          <Styled.CategoryName>{data.category.name}</Styled.CategoryName>
         </Styled.Category>
         <Styled.Date>
-          13/04/2020
+          {data.date}
         </Styled.Date>
       </Styled.Footer>
     </Styled.Container>

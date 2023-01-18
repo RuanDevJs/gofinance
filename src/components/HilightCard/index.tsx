@@ -25,10 +25,10 @@ const icon = {
 }
 
 export default function HighlightCard({
-  title,
-  amount,
-  lastTransaction,
-  type,
+  title="Entradas",
+  amount="R$ 0,00",
+  lastTransaction="Última entrada dia 13 de Abril.",
+  type="down",
   animated
 }: HighlightCardProps) {
   const ITEM_SIZE = Device.width * 0.82;

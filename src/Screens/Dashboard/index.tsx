@@ -44,6 +44,36 @@ const ITEMS: ItemProps[] = [
 ]
 
 export default function DashBoard() {
+  const data = [
+    {
+      title: "Desenvolvimento de site",
+      amount: "R$ 12.000,00",
+      category: {
+        name: "Vendas",
+        icon: "dollar-sign"
+      },
+      date: '13/04/2020'
+    },
+    {
+      title: "Campanha de Marketing",
+      amount: "R$ 8.000,00",
+      category: {
+        name: "Vendas",
+        icon: "dollar-sign"
+      },
+      date: '13/02/2020'
+    },
+    {
+      title: "Festa de comemoração",
+      amount: "R$ 2.000,00",
+      category: {
+        name: "Vendas",
+        icon: "dollar-sign"
+      },
+      date: '13/05/2020'
+    },
+  ]
+
   const translateX = useSharedValue(0);
   const ITEM_SIZE = Device.width * 0.82;
 
@@ -85,10 +115,10 @@ export default function DashBoard() {
           
           return (
             <HighlightCard
-              title={item.title}
-              amount={item.amount}
-              lastTransaction={item.lastTransaction}
-              type={item.type}
+              title={item.title || ''}
+              amount={item.amount || ''}
+              lastTransaction={item.lastTransaction || ''}
+              type={item.type || 'down'}
               animated={
                 {
                   index: index,
@@ -110,7 +140,11 @@ export default function DashBoard() {
       />
       <Styled.Transactions>
         <Styled.Title>Listagem</Styled.Title>
-        <TransactionCard />
+        <Styled.TransactionsList
+          data={data}
+          renderItem={({ item }) => <TransactionCard data={item}/>}
+          showsVerticalScrollIndicator={false}
+        />
       </Styled.Transactions>
     </Styled.Container >
   )
