@@ -1,10 +1,12 @@
-import HighlightCard from "../../components/HilightCard";
-
-import { useTheme } from "styled-components/native";
-import * as Styled from "./styles";
 
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import { Device } from "../../global/device";
+
+import HighlightCard from "../../components/HilightCard";
+import TransactionCard from "../../components/TransactionCard";
+
+import { useTheme } from "styled-components/native";
+import * as Styled from "./styles";
 
 type ItemProps = {
   title?: string;
@@ -106,6 +108,10 @@ export default function DashBoard() {
         scrollEventThrottle={16}
         onScroll={scrollHandler}
       />
+      <Styled.Transactions>
+        <Styled.Title>Listagem</Styled.Title>
+        <TransactionCard />
+      </Styled.Transactions>
     </Styled.Container >
   )
 } 
