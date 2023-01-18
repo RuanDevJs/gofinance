@@ -1,7 +1,7 @@
-import { Feather  } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 import Animated from "react-native-reanimated";
 import { Device } from "../../global/device";
@@ -70,14 +70,26 @@ export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;
 `;
 
-export const HighlightCards = (styled(Animated.FlatList)`
+export const HighlightCards = styled(Animated.FlatList)`
   width: 100%;
   position: relative;
-  top: ${RFValue(-50)}px;
+  top: -${RFValue(42)}px;
   z-index: 10;
-` as unknown) as typeof Animated.FlatList;
-
+` as unknown as typeof Animated.FlatList;
 
 export const Spacer = styled.View`
   width: ${(Device.width - ITEM_SIZE) / 2}px;
+`;
+
+export const Transactions = styled.View`
+  flex: 5;
+  padding: 0 24px;
+`;
+
+export const Title = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${RFValue(18)}px;
+    font-family: ${theme.fonts.regular};
+    margin-bottom: 16px;
+  `}
 `;
