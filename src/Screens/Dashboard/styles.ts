@@ -82,7 +82,7 @@ export const Spacer = styled.View`
 `;
 
 export const Transactions = styled.View`
-  flex: 5;
+  flex: 30%;
   padding: 0 24px;
 `;
 
@@ -93,3 +93,11 @@ export const Title = styled.Text`
     margin-bottom: 16px;
   `}
 `;
+
+export const TransactionsList = styled.FlatList`
+  ${({ theme }) => css`
+    font-size: ${RFValue(18)}px;
+    font-family: ${theme.fonts.regular};
+    margin-bottom: 16px;
+  `}
+` as unknown as typeof FlatList;
