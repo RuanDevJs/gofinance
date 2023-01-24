@@ -1,9 +1,8 @@
-
-import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
+import { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import { Device } from "../../global/device";
 
 import HighlightCard from "../../components/HilightCard";
-import TransactionCard from "../../components/TransactionCard";
+import { TransactionCard, TransactionCardProps } from "../../components/TransactionCard";
 
 import { useTheme } from "styled-components/native";
 import * as Styled from "./styles";
@@ -42,33 +41,42 @@ const ITEMS: ItemProps[] = [
     key: 'right'
   },
 ]
+export interface DataListProps extends TransactionCardProps {
+  id: string;
+}
 
 export default function DashBoard() {
-  const data = [
+  const data: DataListProps[] = [
     {
+      id: '1',
+      type: 'positive',
       title: "Desenvolvimento de site",
       amount: "R$ 12.000,00",
       category: {
         name: "Vendas",
         icon: "dollar-sign"
       },
-      date: '13/04/2020'
+      date: '13/04/2020',
     },
     {
+      id: '2',
+      type: 'negative',
       title: "Campanha de Marketing",
-      amount: "R$ 8.000,00",
+      amount: "R$ 55,00",
       category: {
-        name: "Vendas",
-        icon: "dollar-sign"
+        name: "Alimentação",
+        icon: "coffee"
       },
       date: '13/02/2020'
     },
     {
-      title: "Festa de comemoração",
+      id: '3',
+      type: 'negative',
+      title: "Aluguel da casa",
       amount: "R$ 2.000,00",
       category: {
         name: "Vendas",
-        icon: "dollar-sign"
+        icon: "shopping-bag"
       },
       date: '13/05/2020'
     },
@@ -85,7 +93,7 @@ export default function DashBoard() {
   if(!ITEMS.length){
     return null;
   }
-
+  
   return (
     <Styled.Container>
       <Styled.Header>
@@ -142,8 +150,8 @@ export default function DashBoard() {
         <Styled.Title>Listagem</Styled.Title>
         <Styled.TransactionsList
           data={data}
-          renderItem={({ item }) => <TransactionCard data={item}/>}
-          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <TransactionCard data={item} />}
         />
       </Styled.Transactions>
     </Styled.Container >
