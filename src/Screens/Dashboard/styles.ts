@@ -1,3 +1,4 @@
+import { FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import styled, { css } from "styled-components/native";
@@ -5,7 +6,8 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 import Animated from "react-native-reanimated";
 import { Device } from "../../global/device";
-import { FlatList } from "react-native";
+
+import { DataListProps } from ".";
 
 const ITEM_SIZE = Device.width * 0.82;
 
@@ -94,10 +96,12 @@ export const Title = styled.Text`
   `}
 `;
 
-export const TransactionsList = styled.FlatList`
+export const TransactionsList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false
+})`
   ${({ theme }) => css`
     font-size: ${RFValue(18)}px;
     font-family: ${theme.fonts.regular};
     margin-bottom: 16px;
   `}
-` as unknown as typeof FlatList;
+` as unknown as typeof FlatList<DataListProps>;
